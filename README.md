@@ -1,5 +1,4 @@
 # android-app
-Angular 4 SPA
 
 IMPORTANT NOTES:
 
