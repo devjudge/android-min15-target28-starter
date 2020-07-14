@@ -12,23 +12,27 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigHelper {
-    private static final String TAG = "ConfigHelper";
 
-    public static String getConfigValue(Context context, String name) {
-        Resources resources = context.getResources();
+  private static final String TAG = "ConfigHelper";
 
-        try {
-            InputStream rawResource = resources.openRawResource(R.raw.config);
-            Properties properties = new Properties();
-            properties.load(rawResource);
-            Log.e(TAG, properties.getProperty(name));
-            return properties.getProperty(name);
-        } catch (Resources.NotFoundException e) {
-            Log.e(TAG, "Unable to find the config file: " + e.getMessage());
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to open config file.");
-        }
+  ConfigHelper() {
+    throw new UnsupportedOperationException();
+  }
 
-        return null;
+  public static String getConfigValue(Context context, String name) {
+    Resources resources = context.getResources();
+
+    try {
+      InputStream rawResource = resources.openRawResource(R.raw.config);
+      Properties properties = new Properties();
+      properties.load(rawResource);
+      Log.e(TAG, properties.getProperty(name));
+      return properties.getProperty(name);
+    } catch (Resources.NotFoundException e) {
+      Log.e(TAG, "Unable to find the config file: " + e);
+    } catch (IOException e) {
+      Log.e(TAG, "Failed to open config file." + e);
     }
+    return null;
+  }
 }

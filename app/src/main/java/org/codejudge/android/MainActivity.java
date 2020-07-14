@@ -9,45 +9,46 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.codejudge.android.helper.ConfigHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText txtNumber1, txtNumber2;
-    Button addButton;
-    TextView textView;
-    String API_URL;
+  private EditText txtNumber1;
+  private EditText txtNumber2;
+  private TextView textView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        txtNumber1 = findViewById(R.id.txtNumber1);
-        txtNumber2 = findViewById(R.id.txtNumber2);
-        addButton = findViewById(R.id.btnAdd);
-        textView = findViewById(R.id.txtResult);
+  public MainActivity() {
+    throw new UnsupportedOperationException();
+  }
 
-        addButton.setOnClickListener(this);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    txtNumber1 = findViewById(R.id.txtNumber1);
+    txtNumber2 = findViewById(R.id.txtNumber2);
+    Button addButton = findViewById(R.id.btnAdd);
+    textView = findViewById(R.id.txtResult);
+
+    addButton.setOnClickListener(this);
+  }
+
+  @Override
+  public void onClick(View v) {
+//    Access api_url from config.properties
+    String emptyText = "NaN";
+    String apiUrl = ConfigHelper.getConfigValue(this, "api_url");
+    Log.i("onClick ", apiUrl);
+    String numberText1 = txtNumber1.getText().toString();
+    String numberText2 = txtNumber2.getText().toString();
+    if (StringUtils.isEmpty(numberText1) || StringUtils.isEmpty(numberText2)) {
+      textView.setText(emptyText);
+    } else {
+      Double num1 = Double.parseDouble(numberText1);
+      Double num2 = Double.parseDouble(numberText2);
+      Double sum = num1 + num2;
+      textView.setText(sum.toString());
     }
-
-    @Override
-    public void onClick(View v) {
-//      Access api_url from config.properties
-        API_URL = ConfigHelper.getConfigValue(this, "api_url");
-        Log.i("onClick ", API_URL);
-        String numberText1 = txtNumber1.getText().toString();
-        String numberText2 = txtNumber2.getText().toString();
-        if (numberText1 == null || numberText1.equalsIgnoreCase("")) {
-            textView.setText("NaN");
-        }
-        else if (numberText2 == null || numberText2.equalsIgnoreCase("")) {
-            textView.setText("NaN");
-        }
-        else {
-            Double num1 = Double.parseDouble(numberText1);
-            Double num2 = Double.parseDouble(numberText2);
-            Double sum = num1 + num2;
-            textView.setText(sum.toString());
-        }
-    }
+  }
 }
