@@ -16,7 +16,7 @@ public class ConfigHelper {
   private static final String TAG = "ConfigHelper";
 
   ConfigHelper() {
-    throw new UnsupportedOperationException();
+    super();
   }
 
   public static String getConfigValue(Context context, String name) {

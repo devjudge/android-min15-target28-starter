@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.commons.lang3.StringUtils;
 import org.codejudge.android.helper.ConfigHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private TextView textView;
 
   public MainActivity() {
-    throw new UnsupportedOperationException();
+    super();
   }
 
   @Override
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Log.i("onClick ", apiUrl);
     String numberText1 = txtNumber1.getText().toString();
     String numberText2 = txtNumber2.getText().toString();
-    if (StringUtils.isEmpty(numberText1) || StringUtils.isEmpty(numberText2)) {
+    if (null == numberText1 || null == numberText2 || numberText1.equals("") || numberText2.equals("")) {
       textView.setText(emptyText);
     } else {
       Double num1 = Double.parseDouble(numberText1);
