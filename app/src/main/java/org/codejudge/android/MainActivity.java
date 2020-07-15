@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Log.i("onClick ", apiUrl);
     String numberText1 = txtNumber1.getText().toString();
     String numberText2 = txtNumber2.getText().toString();
-    if (null == numberText1 || null == numberText2 || numberText1.equals("") || numberText2.equals("")) {
+    if (null == numberText1 || null == numberText2 || "".equals(numberText1) || "".equals(numberText2)) {
       textView.setText(emptyText);
     } else {
       Double num1 = Double.parseDouble(numberText1);
