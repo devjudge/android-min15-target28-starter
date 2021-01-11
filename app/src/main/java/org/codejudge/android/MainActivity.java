@@ -35,10 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   @Override
   public void onClick(View v) {
-//    Access api_url from config.properties
     String emptyText = "NaN";
-    String apiUrl = ConfigHelper.getConfigValue(this, "api_url");
-    Log.i("onClick ", apiUrl);
     String numberText1 = txtNumber1.getText().toString();
     String numberText2 = txtNumber2.getText().toString();
     if (null == numberText1 || null == numberText2 || "".equals(numberText1) || "".equals(numberText2)) {
